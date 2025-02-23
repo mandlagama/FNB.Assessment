@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Change Result";
+}
+
+<h2>Change for R @ViewBag.Amount</h2>
+
+@if (ViewBag.Result != null)
+{
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in (string[])ViewBag.Result)
+            {
+                <tr>
+                    <td>@line</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<br />
+<a asp-action="Index">Back to Input</a>
