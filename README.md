@@ -1,1 +1,1 @@
-The project runs on .Net Core 8. I used Dapper for database access. The front end project is FNB.Assessment.Web and the Rest Api project is FNB.Assessment.App. The solution is configured to start multiple projects(Web and Api) when running on Visual Studio.
+The project runs on .Net Core 8. I used Dapper for database access. The front end project is FNB.Assessment.Web and the Rest Api project is FNB.Assessment.App. The solution is configured to start multiple projects(Web and Api) when running on Visual Studio. Please refer to Readme.docx for more details.
