@@ -2,6 +2,7 @@ using FNB.Assessment.Services.Api.Entities;
 using FNB.Assessment.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net;
@@ -11,7 +12,6 @@ namespace FNB.Assessment.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly string CHANGE_API_ENDPOINT = "https://localhost:7065/api/change";
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -47,7 +47,11 @@ namespace FNB.Assessment.Web.Controllers
 
                 var requestBody = new ChangeRequest() { Amount = model.Amount, Denominations = denominations };
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(CHANGE_API_ENDPOINT);
+                IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+                configurationBuilder.AddJsonFile("appsettings.json");
+                var configuration = configurationBuilder.Build();
+                
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(configuration.GetValue<string>("Change_Api_Endpoint"));
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 using (var streamWriter = new StreamWriter(request.GetRequestStream()))
